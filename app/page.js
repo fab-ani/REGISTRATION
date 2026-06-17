@@ -95,7 +95,7 @@ export default function RegisterPage() {
 
         <h1 className="title">Create your student account</h1>
         <p className="subtitle">
-          Register once. Your reg number is your campus ID — sign in on the
+          Register once. Your reg number is your campus ID sign in on the
           mobile app with the same number to mark attendance via QR.
         </p>
 

@@ -1,7 +1,7 @@
 import './globals.css';
 
 export const metadata = {
-  title: 'CampusID — Register',
+  title: 'CampusID Register',
   description: 'Student registration for the Campus Smart Access app.',
 };
 
