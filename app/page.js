@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-const CR_REG_NUMBER = '23062313037';
+const CR_REG_NUMBER = '2306231309933';
 
 export default function RegisterPage() {
   const [form, setForm] = useState({
@@ -80,7 +80,7 @@ export default function RegisterPage() {
 
         <h1 className="title">Create your student account</h1>
         <p className="subtitle">
-          Register once. Your reg number is your campus ID — sign in on the
+          Register once. Your reg number is your campus ID sign in on the
           mobile app with the same number to mark attendance via QR.
         </p>
 
