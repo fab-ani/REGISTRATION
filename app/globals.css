@@ -152,6 +152,16 @@ main.shell {
   cursor: not-allowed;
 }
 
+.cr-info {
+  font-size: 13px;
+  font-weight: 600;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: var(--success-bg);
+  color: var(--success);
+  border: 1px solid rgba(31, 77, 52, 0.18);
+}
+
 .status {
   font-size: 13px;
   font-weight: 600;

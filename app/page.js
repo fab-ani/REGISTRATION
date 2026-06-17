@@ -2,8 +2,6 @@
 
 import { useState } from 'react';
 
-const CR_REG_NUMBER = '2306231309933';
-
 export default function RegisterPage() {
   const [form, setForm] = useState({
     name: '',
@@ -12,10 +10,26 @@ export default function RegisterPage() {
     yearOfStudy: '',
   });
   const [submitting, setSubmitting] = useState(false);
-  const [status, setStatus] = useState(null); // { kind, message }
+  const [status, setStatus] = useState(null);
+  const [cr, setCr] = useState(null);
 
   function update(key, value) {
     setForm((f) => ({ ...f, [key]: value }));
+  }
+
+  async function lookupCR(course) {
+    const trimmed = course.trim();
+    if (!trimmed) {
+      setCr(null);
+      return;
+    }
+    try {
+      const res = await fetch(`/api/cr?course=${encodeURIComponent(trimmed)}`);
+      const data = await res.json();
+      setCr(data.cr || null);
+    } catch {
+      setCr(null);
+    }
   }
 
   async function handleSubmit(e) {
@@ -60,6 +74,7 @@ export default function RegisterPage() {
           : 'Registered! Open the Campus Smart Access app and sign in with your reg number.',
       });
       setForm({ name: '', regNumber: '', course: '', yearOfStudy: '' });
+      setCr(null);
     } catch (err) {
       setStatus({
         kind: 'error',
@@ -80,7 +95,7 @@ export default function RegisterPage() {
 
         <h1 className="title">Create your student account</h1>
         <p className="subtitle">
-          Register once. Your reg number is your campus ID sign in on the
+          Register once. Your reg number is your campus ID — sign in on the
           mobile app with the same number to mark attendance via QR.
         </p>
 
@@ -119,6 +134,7 @@ export default function RegisterPage() {
                 type="text"
                 value={form.course}
                 onChange={(e) => update('course', e.target.value)}
+                onBlur={(e) => lookupCR(e.target.value)}
                 placeholder="Computer Science"
                 required
               />
@@ -141,6 +157,12 @@ export default function RegisterPage() {
             </label>
           </div>
 
+          {cr && (
+            <div className="cr-info">
+              Class Rep: {cr.name} ({cr.regNumber})
+            </div>
+          )}
+
           <button type="submit" className="primary" disabled={submitting}>
             {submitting ? 'Registering…' : 'Register'}
           </button>
@@ -151,7 +173,6 @@ export default function RegisterPage() {
         </form>
 
         <footer className="foot">
-          <span className="badge">Class Rep: {CR_REG_NUMBER}</span>
           <span className="muted small">
             Already registered? Sign in from the Campus Smart Access app.
           </span>
