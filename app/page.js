@@ -106,7 +106,7 @@ export default function RegisterPage() {
               type="text"
               value={form.name}
               onChange={(e) => update('name', e.target.value)}
-              placeholder="e.g. Alex Rivers"
+              placeholder="e.g. Hafidhi Omari Budi"
               autoComplete="name"
               required
             />
@@ -118,7 +118,7 @@ export default function RegisterPage() {
               type="text"
               value={form.regNumber}
               onChange={(e) => update('regNumber', e.target.value)}
-              placeholder="e.g. 23062313037"
+              placeholder="e.g. 23062313037990"
               inputMode="numeric"
               pattern="[0-9]{8,15}"
               autoComplete="username"
