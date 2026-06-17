@@ -1,0 +1,256 @@
+/* Campus Soft-UI palette — matches the Flutter app. */
+:root {
+  --sage:        #466253;
+  --sage-soft:   #5f7b6b;
+  --sage-tint:   #dae2dc;
+  --sage-bg:     #f1f4f1;
+  --surface:     #f7faf7;
+  --card:        #ffffff;
+  --outline:     #c2c8c2;
+  --text:        #181c1b;
+  --text-mute:   #424844;
+  --text-soft:   #727973;
+  --error:       #ba1a1a;
+  --error-soft:  #fbebeb;
+  --success:     #1f4d34;
+  --success-bg:  #cbead6;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(900px 500px at 80% -10%, var(--sage-tint) 0%, transparent 60%),
+    var(--surface);
+  -webkit-font-smoothing: antialiased;
+}
+
+html { 
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+
+main.shell {
+  max-width: 520px;
+  margin: 56px auto;
+  padding: 0 16px;
+  width: 100%;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--outline);
+  border-radius: 24px;
+  padding: 32px 28px 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+
+.hero {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 22px;
+}
+.logo-dot {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--sage-soft), var(--sage));
+  border: 2px solid var(--sage-tint);
+}
+.logo-text {
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.4px;
+  color: var(--sage);
+}
+
+.title {
+  font-size: clamp(22px, 5vw, 26px);
+  font-weight: 800;
+  letter-spacing: -0.6px;
+  margin: 0 0 6px;
+}
+.subtitle {
+  font-size: clamp(13px, 3.5vw, 14px);
+  font-weight: 500;
+  color: var(--text-mute);
+  line-height: 1.45;
+  margin: 0 0 22px;
+}
+
+.form { display: flex; flex-direction: column; gap: 14px; }
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 130px;
+  gap: 12px;
+}
+
+.field { display: flex; flex-direction: column; gap: 6px; }
+
+.label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: 0.2px;
+}
+
+.field input,
+.field select {
+  font: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text);
+  background: var(--card);
+  padding: 12px 14px;
+  border: 1px solid var(--outline);
+  border-radius: 12px;
+  outline: none;
+  transition: border-color 120ms ease, box-shadow 120ms ease;
+}
+.field input::placeholder { color: var(--text-soft); }
+.field input:focus,
+.field select:focus {
+  border-color: var(--sage);
+  box-shadow: 0 0 0 3px rgba(70, 98, 83, 0.12);
+}
+
+.field .hint {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-soft);
+}
+
+.muted { color: var(--text-soft); font-weight: 500; }
+.small { font-size: 11px; }
+
+.primary {
+  font: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+  background: var(--sage);
+  border: 0;
+  border-radius: 9999px;
+  padding: 14px 18px;
+  cursor: pointer;
+  transition: transform 80ms ease, background 120ms ease;
+  margin-top: 4px;
+}
+.primary:hover { background: var(--sage-soft); }
+.primary:active { transform: translateY(1px); }
+.primary:disabled {
+  background: var(--text-soft);
+  cursor: not-allowed;
+}
+
+.status {
+  font-size: 13px;
+  font-weight: 600;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid transparent;
+  line-height: 1.4;
+}
+.status.success {
+  background: var(--success-bg);
+  color: var(--success);
+  border-color: rgba(31, 77, 52, 0.18);
+}
+.status.error {
+  background: var(--error-soft);
+  color: var(--error);
+  border-color: rgba(186, 26, 26, 0.18);
+}
+
+.foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid var(--sage-bg);
+  flex-wrap: wrap;
+}
+
+.badge {
+  display: inline-block;
+  padding: 5px 10px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.4px;
+  color: var(--success);
+  background: var(--success-bg);
+  border-radius: 9999px;
+}
+
+@media (max-width: 768px) {
+  main.shell { 
+    margin: 32px auto;
+    padding: 0 12px;
+  }
+  .card { 
+    padding: 24px 20px 18px;
+    border-radius: 20px;
+  }
+  .hero {
+    margin-bottom: 18px;
+  }
+  .row { 
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  main.shell { 
+    margin: 16px auto;
+    padding: 0 12px;
+  }
+  .card { 
+    padding: 20px 16px 14px;
+    border-radius: 18px;
+    box-shadow: none;
+  }
+  .logo-text {
+    font-size: 18px;
+  }
+  .title {
+    font-size: 22px;
+    margin-bottom: 4px;
+  }
+  .subtitle {
+    font-size: 13px;
+    margin-bottom: 18px;
+  }
+  .form { gap: 12px; }
+  .field input,
+  .field select {
+    padding: 11px 12px;
+    font-size: 16px;
+  }
+  .primary {
+    padding: 12px 16px;
+    font-size: 14px;
+  }
+  .foot {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    margin-top: 14px;
+    padding-top: 12px;
+  }
+  .badge {
+    width: 100%;
+    text-align: center;
+  }
+}
