@@ -13,6 +13,10 @@ export async function GET(request) {
     return jsonResponse({ cr: null });
   }
 
-  const cr = await getCRForCourse(course);
-  return jsonResponse({ cr });
+  try {
+    const cr = await getCRForCourse(course);
+    return jsonResponse({ cr });
+  } catch {
+    return jsonResponse({ cr: null });
+  }
 }
