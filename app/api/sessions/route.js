@@ -1,4 +1,4 @@
-import { createSession, getStudent, CR_REG_NUMBER } from '@/lib/db';
+import { createSession, getStudent } from '@/lib/db';
 import { corsPreflight, jsonResponse } from '@/lib/cors';
 
 export const runtime = 'nodejs';
@@ -26,17 +26,20 @@ export async function POST(request) {
   if (!periodTime) return jsonResponse({ error: 'Period time is required.' }, { status: 400 });
   if (!createdBy)  return jsonResponse({ error: 'createdBy reg number is required.' }, { status: 400 });
 
-  if (createdBy !== CR_REG_NUMBER) {
+  // Role check uses the DB record, not a hardcoded reg number, so accounts
+  // created via the "Become CR" toggle on the registration form can also
+  // start sessions.
+  const creator = await getStudent(createdBy);
+  if (!creator) {
     return jsonResponse(
-      { error: 'Only the Class Representative can create sessions.' },
-      { status: 403 }
+      { error: 'Your account is not registered yet.' },
+      { status: 404 }
     );
   }
-
-  if (!(await getStudent(createdBy))) {
+  if (creator.role !== 'cr') {
     return jsonResponse(
-      { error: 'The CR account is not registered yet.' },
-      { status: 404 }
+      { error: 'Only a Class Representative can create sessions.' },
+      { status: 403 }
     );
   }
 
