@@ -131,6 +131,35 @@ main.shell {
 
 .muted { color: var(--text-soft); font-weight: 500; }
 .small { font-size: 11px; }
+.block { display: block; margin-top: 3px; }
+
+.cr-toggle {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: var(--sage-bg);
+  border: 1px dashed var(--outline);
+  font-size: 13px;
+  color: var(--text);
+  cursor: pointer;
+  transition: border-color 120ms ease, background 120ms ease;
+}
+.cr-toggle:hover {
+  border-color: var(--sage);
+}
+.cr-toggle input[type="checkbox"] {
+  margin-top: 2px;
+  width: 18px;
+  height: 18px;
+  accent-color: var(--sage);
+  cursor: pointer;
+}
+.cr-toggle strong {
+  font-weight: 700;
+  color: var(--text);
+}
 
 .primary {
   font: inherit;

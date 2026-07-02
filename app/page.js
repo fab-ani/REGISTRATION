@@ -8,6 +8,7 @@ export default function RegisterPage() {
     regNumber: '',
     course: '',
     yearOfStudy: '',
+    becomeCr: false,
   });
   const [submitting, setSubmitting] = useState(false);
   const [status, setStatus] = useState(null);
@@ -54,6 +55,7 @@ export default function RegisterPage() {
           regNumber:   form.regNumber.trim(),
           course:      form.course.trim(),
           yearOfStudy: Number(form.yearOfStudy),
+          becomeCr:    form.becomeCr,
         }),
       });
       const data = await res.json();
@@ -73,7 +75,13 @@ export default function RegisterPage() {
           ? 'Registered! You are the Class Representative — open the app to create attendance sessions.'
           : 'Registered! Open the Campus Smart Access app and sign in with your reg number.',
       });
-      setForm({ name: '', regNumber: '', course: '', yearOfStudy: '' });
+      setForm({
+        name: '',
+        regNumber: '',
+        course: '',
+        yearOfStudy: '',
+        becomeCr: false,
+      });
       setCr(null);
     } catch (err) {
       setStatus({
@@ -163,8 +171,24 @@ export default function RegisterPage() {
             </div>
           )}
 
+          <label className="cr-toggle">
+            <input
+              type="checkbox"
+              checked={form.becomeCr}
+              onChange={(e) => update('becomeCr', e.target.checked)}
+            />
+            <span>
+              <strong>Register as Class Representative</strong>
+              <span className="muted small block">
+                Testing only — bypasses the reg-number check so you can
+                exercise the CR flow (create sessions, export PDF) without
+                using the real CR account.
+              </span>
+            </span>
+          </label>
+
           <button type="submit" className="primary" disabled={submitting}>
-            {submitting ? 'Registering…' : 'Register'}
+            {submitting ? 'Registering…' : (form.becomeCr ? 'Register as CR' : 'Register')}
           </button>
 
           {status && (

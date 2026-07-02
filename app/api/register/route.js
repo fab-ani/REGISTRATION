@@ -19,6 +19,7 @@ export async function POST(request) {
   const regNumber   = typeof body.regNumber   === 'string' ? body.regNumber.trim() : '';
   const course      = typeof body.course      === 'string' ? body.course.trim()    : '';
   const yearOfStudy = Number(body.yearOfStudy);
+  const becomeCr    = body.becomeCr === true;
 
   if (!name) {
     return jsonResponse({ error: 'Name is required.' }, { status: 400 });
@@ -46,6 +47,12 @@ export async function POST(request) {
     );
   }
 
-  const student = await createStudent({ name, regNumber, course, yearOfStudy });
+  const student = await createStudent({
+    name,
+    regNumber,
+    course,
+    yearOfStudy,
+    becomeCr,
+  });
   return jsonResponse({ student }, { status: 201 });
 }
